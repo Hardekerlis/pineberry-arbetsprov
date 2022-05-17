@@ -2,15 +2,29 @@ import mongoose from 'mongoose';
 import faker from 'faker';
 import request from 'supertest';
 import { nanoid } from 'nanoid';
+import jwt from 'jsonwebtoken';
+import { sign } from 'cookie-signature';
 
 import app from '../app';
 app; // Load env variables in app
 
-process.env.JWT_KEY = 'jasdkjlsadkljgdsfakljsfakjlsaf';
+import { User, UserDoc } from '../models/user';
+
+interface CreateUserParams {
+  password?: string;
+}
+
+interface CreateUserData {
+  cookie: string;
+  user: UserDoc;
+  password: string;
+}
 
 declare global {
   namespace NodeJS {
-    interface Global {}
+    interface Global {
+      createUser(params: CreateUserParams): Promise<CreateUserData>;
+    }
   }
 }
 
@@ -24,7 +38,7 @@ beforeAll(async () => {
     'sk_test_51K1FuOBkwIduIotVrW6mf2btytLgudruiqgHHAxYaIYe9gF5nAbwu9d5ClApRzRen4WN8vJJkBfu3XcP6rp68PgU00Z3q59tqm';
 
   try {
-    await mongoose.connect(`${process.env.MONGO_URI}/${config.mongodb.name}`);
+    await mongoose.connect(`${process.env.MONGO_URI}/test`);
   } catch (err) {
     console.error(err, 41);
   }
@@ -46,3 +60,27 @@ afterAll(async () => {
     console.log(err, 58);
   }
 });
+
+// TODO: Implement this:
+global.createUser = async (
+  params: CreateUserParams,
+): Promise<CreateUserData> => {
+  const password =
+    params && params.password ? params.password : faker.internet.password();
+
+  const user = User.build({
+    username: faker.internet.userName(),
+    password,
+  });
+
+  await user.save();
+
+  const payload = {
+    userId: user.id,
+  };
+
+  const token = jwt.sign(payload, process.env.JWT_KEY as string);
+  const cookie = `s:${sign(token, process.env.JWT_KEY as string)}`;
+
+  return { cookie: `token=${cookie}; path=/`, password, user };
+};

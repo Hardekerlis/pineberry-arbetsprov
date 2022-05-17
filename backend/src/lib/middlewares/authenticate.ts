@@ -1,11 +1,39 @@
 import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+
+import { NotAuthorizedError } from '../errors';
+import { UserPayload } from '../interfaces';
+
+declare global {
+  namespace Express {
+    interface Request {
+      currentUser: UserPayload;
+    }
+  }
+}
 
 const authenticate = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
-  // TODO: Implement authenticate
+  const { token } = req.signedCookies;
+
+  if (!token) {
+    throw new NotAuthorizedError();
+  }
+
+  const payload = jwt.verify(
+    token,
+    process.env.JWT_KEY as string,
+  ) as UserPayload;
+
+  req.currentUser = {
+    email: payload.email,
+    userId: payload.userId,
+  };
 
   next();
 };
+
+export { authenticate };
