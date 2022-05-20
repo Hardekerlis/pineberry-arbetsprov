@@ -5,7 +5,9 @@ const request = axios.create();
 import { isDevEnvironment } from './isDevEnvironment';
 
 request.defaults.withCredentials = true;
-request.defaults.baseURL = isDevEnvironment ? 'http://localhost:3001' : '';
+request.defaults.baseURL = isDevEnvironment
+  ? 'http://localhost:3001'
+  : 'http://38.242.239.247:3002/';
 
 request.interceptors.response.use(
   (response) => {
