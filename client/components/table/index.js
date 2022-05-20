@@ -44,7 +44,7 @@ const Table = ({ children, data, editable, results }) => {
 
     // TODO: Refactor code
     if (data.sex === 'male') {
-      const cells = [<Header>Grenar</Header>];
+      const cells = [<Header key={'header'}>Grenar</Header>];
       let index = 0;
       for (const competition of maleOrder) {
         cells.push(
@@ -59,7 +59,11 @@ const Table = ({ children, data, editable, results }) => {
       }
 
       if (results)
-        cells.push(<Cell style={{ fontWeight: 'bold' }}>Antal poäng</Cell>);
+        cells.push(
+          <Cell key={index + 20} style={{ fontWeight: 'bold' }}>
+            Antal poäng
+          </Cell>,
+        );
 
       elems.push(<Column key={index + 10}>{cells}</Column>);
     } else {
@@ -78,7 +82,11 @@ const Table = ({ children, data, editable, results }) => {
       }
 
       if (results)
-        cells.push(<Cell style={{ fontWeight: 'bold' }}>Antal poäng</Cell>);
+        cells.push(
+          <Cell key={index + 20} style={{ fontWeight: 'bold' }}>
+            Antal poäng
+          </Cell>,
+        );
 
       elems.push(<Column key={index + 10}>{cells}</Column>);
     }
@@ -144,7 +152,9 @@ const Table = ({ children, data, editable, results }) => {
 
           if (results)
             cells.push(
-              <Cell style={{ fontWeight: 'bold' }}>{totalScore}</Cell>,
+              <Cell key={index + 20} style={{ fontWeight: 'bold' }}>
+                {totalScore}
+              </Cell>,
             );
 
           elems.push(<Column key={participant.id}>{cells}</Column>);
