@@ -57,33 +57,33 @@ const Admin = () => {
   const [participantNumber, setParticipantNumber] = useState('');
 
   useEffect(() => {
-    // (async () => {
-    //   const res = await new Promise((resolve) => {
-    //     request
-    //       .get('/api/competition')
-    //       .then((res) => {
-    //         resolve(res);
-    //       })
-    //       .catch((err) => {
-    //         resolve(err);
-    //       });
-    //   });
-    //
-    //   if (res.status === 404) {
-    //     setCompetition({});
-    //     return;
-    //   }
-    //
-    //   request
-    //     .get(
-    //       `/api/competition/${
-    //         res.competitions[res.competitions.length - 1].id
-    //       }`,
-    //     )
-    //     .then((res) => {
-    //       setCompetition(res.competition);
-    //     });
-    // })();
+    (async () => {
+      const res = await new Promise((resolve) => {
+        request
+          .get('/api/competition')
+          .then((res) => {
+            resolve(res);
+          })
+          .catch((err) => {
+            resolve(err);
+          });
+      });
+
+      if (res.status === 404) {
+        setCompetition({});
+        return;
+      }
+
+      request
+        .get(
+          `/api/competition/${
+            res.competitions[res.competitions.length - 1].id
+          }`,
+        )
+        .then((res) => {
+          setCompetition(res.competition);
+        });
+    })();
   }, []);
 
   useEffect(() => {
