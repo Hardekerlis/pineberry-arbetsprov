@@ -17,7 +17,7 @@ const authenticate = async (
   res: Response,
   next: NextFunction,
 ) => {
-  const { token } = req.signedCookies;
+  const { token } = req.cookies;
 
   if (!token) {
     throw new NotAuthorizedError();
