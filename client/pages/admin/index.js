@@ -7,7 +7,7 @@ import styles from './admin.module.sass';
 import { Dropdown, DropdownItem, Table } from 'components';
 import { PromptContext } from 'contexts';
 
-export const getServerSideProps = async ({ req }) => {
+export async function getServerSideProps({ req }) {
   const result = await new Promise((resolve) => {
     request
       .get('/api/admin/check', {
@@ -39,13 +39,14 @@ export const getServerSideProps = async ({ req }) => {
   return {
     props: {},
   };
-};
+}
 
 const Admin = () => {
   const setPrompt = useContext(PromptContext);
 
   const [competition, setCompetition] = useState({
     participants: [],
+    name: '',
   });
   const [containerStyle, setContainerStyle] = useState();
   const [btnStyle, setBtnStyle] = useState({});
@@ -82,12 +83,6 @@ const Admin = () => {
         .then((res) => {
           setCompetition(res.competition);
         });
-
-      // setCompetition(res.competitions[res.competitions.length - 1]);
-
-      // for (const comp of res.data.competitions) {
-      //   console.log(comp);
-      // }
     })();
   }, []);
 
@@ -122,7 +117,6 @@ const Admin = () => {
   };
 
   const toggleParticipantForm = () => {
-    console.log('hihi');
     setShowParticipantForm(!showParticipantForm);
   };
 
@@ -142,11 +136,6 @@ const Admin = () => {
       .post('/api/competition/create', values)
       .then((res) => {
         window.location.reload();
-
-        // setPrompt({
-        //   message: 'Tävling skapad',
-        //   level: 'info',
-        // });
       })
       .catch((err) => {
         console.log(err);
