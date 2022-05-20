@@ -71,7 +71,10 @@ const Admin = () => {
           });
       })
       .catch((err) => {
-        setCompetition({});
+        setCompetition({
+          participants: [],
+          name: '',
+        });
       });
   }, []);
 
