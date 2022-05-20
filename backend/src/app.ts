@@ -31,9 +31,6 @@ app.use(
   cookieParser(
     process.env.JWT_KEY as string,
     {
-      signed: true,
-      secure: true,
-      httpOnly: true,
       maxAge: 86400000,
     } as CookieParseOptions,
   ),

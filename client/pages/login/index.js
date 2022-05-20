@@ -43,6 +43,9 @@ const Login = () => {
           message: 'Inloggningen lyckades',
           level: 'info',
         });
+
+        console.log(res);
+
         router.push('/admin');
       })
       .catch((err) => {
