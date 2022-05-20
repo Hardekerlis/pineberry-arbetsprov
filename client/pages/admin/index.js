@@ -57,21 +57,22 @@ const Admin = () => {
   const [participantNumber, setParticipantNumber] = useState('');
 
   useEffect(() => {
-    request.get('/api/competition');
-    //   .then((res) => {
-    //     // request
-    //     //   .get(
-    //     //     `/api/competition/${
-    //     //       res.competitions[res.competitions.length - 1].id
-    //     //     }`,
-    //     //   )
-    //     //   .then((res) => {
-    //     //     setCompetition(res.competition);
-    //     //   });
-    //   })
-    //   .catch((err) => {
-    //     setCompetition({});
-    //   });
+    request
+      .get('/api/competition')
+      .then((res) => {
+        // request
+        //   .get(
+        //     `/api/competition/${
+        //       res.competitions[res.competitions.length - 1].id
+        //     }`,
+        //   )
+        //   .then((res) => {
+        //     setCompetition(res.competition);
+        //   });
+      })
+      .catch((err) => {
+        //     setCompetition({});
+      });
   }, []);
 
   useEffect(() => {
