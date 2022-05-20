@@ -135,7 +135,7 @@ const Admin = () => {
     request
       .post('/api/competition/create', values)
       .then((res) => {
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -154,7 +154,7 @@ const Admin = () => {
 
     request.post(`/api/participants/${competition.id}`, values).then((res) => {
       console.log(res);
-      window.location.reload();
+      // window.location.reload();
     });
   };
 
@@ -182,7 +182,7 @@ const Admin = () => {
       })
       .then((res) => {
         console.log(res);
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((err) => {
         console.log(err);
