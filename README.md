@@ -9,4 +9,4 @@ Jag vill också ha en lista över gamla tävlingar så gamla resultat inte förs
 Routes:
 Landing page: "http://38.242.239.247:3003/"
 Login page = "http://38.242.239.247:3003/login"
-Admin page = "http://38.242.239.247:3003/"
+Admin page = "http://38.242.239.247:3003/admin"
