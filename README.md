@@ -7,6 +7,6 @@ I kommande versioner vill jag förbättra designen på frontend och samt skapa e
 Jag vill också ha en lista över gamla tävlingar så gamla resultat inte försvinner, även detta finns på backend men inte frontend. Domare ska kunna avsluta en tävling och/eller ha flera aktiva på samma gång. Också bra att implementera en logger på backend.
 
 Routes:
-Landing page: "http://38.242.239.247:3003/"
-Login page = "http://38.242.239.247:3003/login"
-Admin page = "http://38.242.239.247:3003/admin"
+Landing page: "http://38.242.239.247:3003/"<br>
+Login page = "http://38.242.239.247:3003/login"<br>
+Admin page = "http://38.242.239.247:3003/admin"<br>
