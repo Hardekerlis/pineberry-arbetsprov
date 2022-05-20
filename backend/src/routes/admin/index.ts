@@ -36,4 +36,7 @@ router.post(
   login,
 );
 
+import check from './check';
+router.get('/check', authenticate, check);
+
 export default router;

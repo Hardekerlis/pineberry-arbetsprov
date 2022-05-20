@@ -8,6 +8,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Head>
+        <title>Tiokamp</title>
         <meta name="description" content="Now this is pod-racing." />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />

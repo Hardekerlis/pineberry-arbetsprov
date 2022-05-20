@@ -3,6 +3,8 @@ import { app } from './app';
 import mongoose from 'mongoose';
 import Logger from 'frictionless-logger';
 
+import { User } from './models';
+
 const logger = new Logger();
 
 const initializeServer = async () => {
@@ -21,6 +23,17 @@ const initializeServer = async () => {
   logger.debug('Connecting to MongoDB');
   await mongoose.connect(env.MONGO_URL);
   logger.debug('MongoDB connection established');
+
+  const testUser = await User.find();
+
+  if (!testUser[0]) {
+    const newUser = User.build({
+      username: 'testuser123',
+      password: 'testuser123',
+    });
+
+    await newUser.save();
+  }
 
   if (!env.PORT) {
     throw new Error('PORT must be defined');

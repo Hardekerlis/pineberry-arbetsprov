@@ -8,7 +8,7 @@ import { sign } from 'cookie-signature';
 import app from '../app';
 app; // Load env variables in app
 
-import { User, UserDoc } from '../models/user';
+import { User, UserDoc, CompetitionDoc, Competition } from '../models';
 
 interface CreateUserParams {
   password?: string;
@@ -24,6 +24,7 @@ declare global {
   namespace NodeJS {
     interface Global {
       createUser(params: CreateUserParams): Promise<CreateUserData>;
+      createCompetition(): Promise<CompetitionDoc>;
     }
   }
 }
@@ -83,4 +84,16 @@ global.createUser = async (
   const cookie = `s:${sign(token, process.env.JWT_KEY as string)}`;
 
   return { cookie: `token=${cookie}; path=/`, password, user };
+};
+
+global.createCompetition = async (): Promise<CompetitionDoc> => {
+  const competition = Competition.build({
+    name: faker.company.companyName(),
+    timestamp: +new Date(),
+    sex: 'female',
+  });
+
+  await competition.save();
+
+  return competition;
 };

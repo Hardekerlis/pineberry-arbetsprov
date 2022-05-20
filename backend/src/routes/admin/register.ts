@@ -14,7 +14,10 @@ const register = async (req: Request, res: Response) => {
     throw new BadRequestError('A user with that username already exists');
   }
 
-  const user = User.build(data);
+  const user = User.build({
+    username: data.username,
+    password: data.password,
+  });
 
   await user.save();
 

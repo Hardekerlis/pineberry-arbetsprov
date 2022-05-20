@@ -11,7 +11,12 @@ import { NotFoundError, errorHandler } from './lib';
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: 'http://localhost:3000',
+  }),
+);
 
 app.use(urlencoded({ extended: false }));
 app.use(
@@ -20,7 +25,7 @@ app.use(
   }),
 );
 
-process.env.JWT_KEY = process.env.dev ? 'testing' : nanoid();
+process.env.JWT_KEY = process.env.DEV ? 'testing' : nanoid();
 
 app.use(
   cookieParser(

@@ -1,0 +1,44 @@
+@import "styles/variables"
+
+
+.container
+  width: 100%
+  background-color: $white
+  margin-top: 10px
+  position: relative
+  border-radius: 5px
+  // overflow: hidden
+
+  .input
+    display: none
+
+  .dropdownButton
+    all: unset
+    width: calc(100% - 20px)
+    height: 100%
+    text-align: center
+    padding: 5px 10px
+    cursor: pointer
+    border-radius: 5px
+    transition: .15s
+    position: relative
+
+    &:hover
+      background-color: $dropdownHover
+
+    &:active
+      border-radius: 0px
+
+    .arrow
+      position: absolute
+      right: 10px
+      font-weight: bold
+      height: calc(100% - 10px)
+      display: inline-flex
+      justify-content: center
+      align-items: center
+      writing-mode: vertical-rl
+
+  .options
+    width: 100%
+    transition: .1s

@@ -31,21 +31,16 @@ const userSchema = new mongoose.Schema(
       transform: (doc, ret) => {
         ret.id = ret._id;
 
-        delete ret.stripeCustomerId;
         delete ret._id;
         delete ret.password;
-        delete ret.emailVerification;
         delete ret.__v;
       },
     },
     toJSON: {
       transform: (doc, ret) => {
         ret.id = ret._id;
-
-        delete ret.stripeCustomerId;
         delete ret._id;
         delete ret.password;
-        delete ret.emailVerification;
         delete ret.__v;
       },
     },

@@ -29,7 +29,7 @@ const authenticate = async (
   ) as UserPayload;
 
   req.currentUser = {
-    email: payload.email,
+    username: payload.username,
     userId: payload.userId,
   };
 
