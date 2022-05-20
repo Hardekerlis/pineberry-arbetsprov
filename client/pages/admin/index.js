@@ -57,8 +57,7 @@ const Admin = () => {
   const [participantNumber, setParticipantNumber] = useState('');
 
   useEffect(() => {
-    // request
-    //   .get('/api/competition')
+    request.get('/api/competition');
     //   .then((res) => {
     //     // request
     //     //   .get(
