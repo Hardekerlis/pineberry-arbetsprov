@@ -57,136 +57,135 @@ const Admin = () => {
   const [participantNumber, setParticipantNumber] = useState('');
 
   useEffect(() => {
-    (async () => {
-      const res = await new Promise((resolve) => {
-        request
-          .get('/api/competition')
-          .then((res) => {
-            resolve(res);
-          })
-          .catch((err) => {
-            resolve(err);
-          });
-      });
-
-      if (res.status === 404) {
-        setCompetition({});
-        return;
-      }
-
-      request
-        .get(
-          `/api/competition/${
-            res.competitions[res.competitions.length - 1].id
-          }`,
-        )
-        .then((res) => {
-          setCompetition(res.competition);
-        });
-    })();
+    // (async () => {
+    //   const res = await new Promise((resolve) => {
+    //     request
+    //       .get('/api/competition')
+    //       .then((res) => {
+    //         resolve(res);
+    //       })
+    //       .catch((err) => {
+    //         resolve(err);
+    //       });
+    //   });
+    //
+    //   if (res.status === 404) {
+    //     setCompetition({});
+    //     return;
+    //   }
+    //
+    //   request
+    //     .get(
+    //       `/api/competition/${
+    //         res.competitions[res.competitions.length - 1].id
+    //       }`,
+    //     )
+    //     .then((res) => {
+    //       setCompetition(res.competition);
+    //     });
+    // })();
   }, []);
 
   useEffect(() => {
-    if (
-      (competition && Object.keys(competition).length === 0) ||
-      (competition && !competition.participants[0])
-    ) {
-      setBtnStyle({
-        width: '200px',
-        height: '200px',
-      });
-
-      setContainerStyle({
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      });
-    } else {
-      setBtnStyle({
-        position: 'absolute',
-        width: '100px',
-        height: '80px',
-        left: '20px',
-        bottom: '20px',
-      });
-    }
+    // if (
+    //   (competition && Object.keys(competition).length === 0) ||
+    //   (competition && !competition.participants[0])
+    // ) {
+    //   setBtnStyle({
+    //     width: '200px',
+    //     height: '200px',
+    //   });
+    //
+    //   setContainerStyle({
+    //     display: 'flex',
+    //     justifyContent: 'center',
+    //     alignItems: 'center',
+    //   });
+    // } else {
+    //   setBtnStyle({
+    //     position: 'absolute',
+    //     width: '100px',
+    //     height: '80px',
+    //     left: '20px',
+    //     bottom: '20px',
+    //   });
+    // }
   }, [competition]);
 
   const toggleCompetitionForm = () => {
-    setShowCompetitionForm(!showCompetitionForm);
+    // setShowCompetitionForm(!showCompetitionForm);
   };
 
   const toggleParticipantForm = () => {
-    setShowParticipantForm(!showParticipantForm);
+    // setShowParticipantForm(!showParticipantForm);
   };
 
   const createCompetitionSubmit = (event) => {
     event.preventDefault();
-    const inputs = event.target.getElementsByTagName('input');
-
-    const values = {
-      timestamp: +new Date(),
-    };
-
-    for (const input of inputs) {
-      values[input.name] = input.value;
-    }
-
-    request
-      .post('/api/competition/create', values)
-      .then((res) => {
-        // window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // const inputs = event.target.getElementsByTagName('input');
+    //
+    // const values = {
+    //   timestamp: +new Date(),
+    // };
+    //
+    // for (const input of inputs) {
+    //   values[input.name] = input.value;
+    // }
+    //
+    // request
+    //   .post('/api/competition/create', values)
+    //   .then((res) => {
+    //     window.location.reload();
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   const addParticipant = (event) => {
     event.preventDefault();
-    const inputs = event.target.getElementsByTagName('input');
-
-    const values = {};
-
-    for (const input of inputs) {
-      values[input.name] = input.value;
-    }
-
-    request.post(`/api/participants/${competition.id}`, values).then((res) => {
-      console.log(res);
-      // window.location.reload();
-    });
+    // const inputs = event.target.getElementsByTagName('input');
+    //
+    // const values = {};
+    //
+    // for (const input of inputs) {
+    //   values[input.name] = input.value;
+    // }
+    //
+    // request.post(`/api/participants/${competition.id}`, values).then((res) => {
+    //   window.location.reload();
+    // });
   };
 
   const submitResults = (event) => {
     event.preventDefault();
-    const inputs = event.target.getElementsByTagName('input');
-    const values = [];
-    const userIds = [];
-    for (const input of inputs) {
-      const userId = input.getAttribute('userid');
-      if (!userIds.includes(userId)) userIds.push(userId);
-      if (input.value)
-        values.push({
-          userId: userId,
-          value: input.value,
-          event: input.name,
-        });
-    }
-
-    request
-      .post('/api/competition/results', {
-        values,
-        userIds,
-        competitionId: competition.id,
-      })
-      .then((res) => {
-        console.log(res);
-        // window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // const inputs = event.target.getElementsByTagName('input');
+    // const values = [];
+    // const userIds = [];
+    // for (const input of inputs) {
+    //   const userId = input.getAttribute('userid');
+    //   if (!userIds.includes(userId)) userIds.push(userId);
+    //   if (input.value)
+    //     values.push({
+    //       userId: userId,
+    //       value: input.value,
+    //       event: input.name,
+    //     });
+    // }
+    //
+    // request
+    //   .post('/api/competition/results', {
+    //     values,
+    //     userIds,
+    //     competitionId: competition.id,
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     window.location.reload();
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   return (
