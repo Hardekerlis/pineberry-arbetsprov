@@ -8,6 +8,7 @@ request.defaults.withCredentials = true;
 request.defaults.baseURL = isDevEnvironment
   ? 'http://localhost:3001'
   : 'http://38.242.239.247:3002/';
+// : 'http://localhost:3001';
 
 request.interceptors.response.use(
   (response) => {

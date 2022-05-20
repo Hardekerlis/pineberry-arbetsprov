@@ -19,6 +19,8 @@ const authenticate = async (
 ) => {
   const { token } = req.cookies;
 
+  console.log(token);
+
   if (!token) {
     throw new NotAuthorizedError();
   }

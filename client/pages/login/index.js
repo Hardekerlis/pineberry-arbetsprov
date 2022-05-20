@@ -44,6 +44,8 @@ const Login = () => {
           level: 'info',
         });
 
+        console.log(res);
+
         router.push('/admin');
       })
       .catch((err) => {
